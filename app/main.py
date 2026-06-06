@@ -12,7 +12,7 @@ app = FastAPI(title="Construction API")
 
 @app.get("/")
 def read_root():
-    return {"status": "ok"}
+    return {"status": "running", "version": "1.0.0"}
 
 
 @app.get("/projects", response_model=list[schemas.ProjectResponse])
