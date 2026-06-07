@@ -34,9 +34,9 @@ jobs:
 
       - name: Run tests
         env:
-            DATABASE_URL : ${{secrets.DATABASE_URL}}
-        run: pytest tests/ -v
-        continue-on-error: false
+          DATABASE_URL: "sqlite:///./test.db"
+        run: |
+          pytest tests/ -v
 
       - name: Build Docker image
         run: |
