@@ -2,6 +2,7 @@ from fastapi.testclient import TestClient
 from unittest.mock import patch, MagicMock
 from app.main import app
 
+# This single positional argument format is universally compatible
 client = TestClient(app)
 
 def test_health_check():
@@ -14,4 +15,4 @@ def test_get_projects_returns_list():
     mock_db.query.return_value.all.return_value = []
     with patch("app.main.get_db", return_value=iter([mock_db])):
         response = client.get("/projects")
-    assert response.status_code == 200
+        assert response.status_code == 200
