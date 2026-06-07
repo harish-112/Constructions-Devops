@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM python:3.11-alpine
 
 # Add this block right after FROM — needed for psycopg2
 RUN apt-get update && apt-get install -y \
