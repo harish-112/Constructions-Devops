@@ -1,10 +1,9 @@
-import httpx
 from fastapi.testclient import TestClient
 from unittest.mock import patch, MagicMock
 from app.main import app
 
-# Modern explicit initialization that supports newer HTTPX/Starlette versions
-client = TestClient(transport=httpx.ASGITransport(app=app), base_url="http://test")
+# This single positional argument format is universally compatible
+client = TestClient(app)
 
 def test_health_check():
     response = client.get("/")
