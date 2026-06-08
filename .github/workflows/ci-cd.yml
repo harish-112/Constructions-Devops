@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 env:
-  ACR_NAME: constructionacr
+  ACR_NAME: constructionacr99
   IMAGE_NAME: construction-api
   AKS_CLUSTER: construction-aks
   RESOURCE_GROUP: construction-rg
@@ -84,8 +84,8 @@ jobs:
         run: |
           kubectl set image deployment/construction-api \
             construction-api=${{ env.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }} \
-            --record
+            -n construction
 
       - name: Verify rollout
         run: |
-          kubectl rollout status deployment/construction-api --timeout=120s
+          kubectl rollout status deployment/construction-api -n construction --timeout=120s
