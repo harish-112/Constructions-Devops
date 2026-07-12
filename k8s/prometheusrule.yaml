@@ -1,0 +1,29 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: construction-api-alerts
+  namespace: monitoring
+  labels:
+    release: prometheus-stack
+spec:
+  groups:
+    - name: construction-api
+      rules:
+        - alert: HighErrorRate
+          expr: |
+            rate(http_requests_total{status=~"5.."}[5m]) > 0.1
+          for: 2m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High error rate on construction-api"
+            description: "More than 10% of requests are returning 5xx errors"
+
+        - alert: PodNotReady
+          expr: |
+            kube_pod_status_ready{namespace="construction", condition="true"} == 0
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Pod not ready in construction namespace"
