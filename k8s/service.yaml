@@ -3,11 +3,14 @@ kind: Service
 metadata:
   name: construction-api-service
   namespace: construction
+  labels:
+    app: construction-api        # ← ServiceMonitor matches on this
 spec:
   selector:
     app: construction-api
   ports:
-    - protocol: TCP
+    - name: http                 # ← ServiceMonitor references this name
+      protocol: TCP
       port: 80
       targetPort: 8000
   type: ClusterIP
