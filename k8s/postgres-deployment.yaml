@@ -51,9 +51,9 @@ spec:
               command:
                 - pg_isready
                 - -U
-                - devuser
+                - "$POSTGRES_USER"
                 - -d
-                - constructiondb
+                - "$POSTGRES_DB"
             initialDelaySeconds: 10
             periodSeconds: 5
       volumes:
