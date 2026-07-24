@@ -7,9 +7,9 @@ on:
     branches: [main]
 
 env:
-  ACR_NAME: constructionacr99
+  ACR_NAME: constructionacr2026
   IMAGE_NAME: construction-api
-  AKS_CLUSTER: construction-aks
+  AKS_CLUSTER: constructionwork-aks
   RESOURCE_GROUP: construction-rg
 
 jobs:
