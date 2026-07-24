@@ -1,6 +1,7 @@
 
 from fastapi import Depends, FastAPI
 from sqlalchemy.orm import Session
+from prometheus_fastapi_instrumentator import Instrumentator
 
 from app import models, schemas
 from app.database import Base, engine, get_db
@@ -8,7 +9,7 @@ from app.database import Base, engine, get_db
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Construction API")
-
+Instrumentator().instrument(app).expose(app)
 
 @app.get("/")
 def read_root():

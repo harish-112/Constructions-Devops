@@ -1,18 +1,15 @@
-FROM python:3.11-alpine
-
-# FIX: Swap apt-get out for alpine's apk package manager
-RUN apk add --no-cache \
-    gcc \
-    musl-dev \
-    postgresql-dev
+FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY requirements.txt .
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
 
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+COPY app ./app
 
 EXPOSE 8000
 
