@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: construction-api
-          image: constructionacr99.azurecr.io/construction-api:v1 
+          image: constructionacr2026.azurecr.io/construction-api:v1 
           ports:
             - containerPort: 8000
           env:
