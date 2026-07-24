@@ -47,7 +47,7 @@ jobs:
           image-ref: ${{ env.IMAGE_NAME }}:${{ github.sha }}
           format: table
           exit-code: 1
-          severity: CRITICAL
+          severity: HIGH
 
   cd:
     name: Push and Deploy
